@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: sonar
-# Recipe:: proxy_nginx
+# Recipe:: mysql
 #
-# Copyright 2011, Christian Trabold
+# Copyright 2011, Srinivasan Raguraman
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,16 +17,11 @@
 # limitations under the License.
 #
 
-include_recipe "nginx"
+# Database settings
+# @see conf/sonar.properties for examples for different databases
+override['sonar']['jdbc_url']             = "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8"
+override['sonar']['jdbc_driverClassName'] = "com.mysql.jdbc.Driver"
+override['sonar']['jdbc_validationQuery'] = "select 1"
 
-template "sonar_server.conf" do
-  path "#{node[:nginx][:dir]}/sites-available/sonar_server.conf"
-  source "nginx_site.erb"
-  owner "root"
-  group "root"
-  mode 0644
-end
-
-nginx_site "sonar_server.conf" do
-  enable :true
-end
+include "default"
+include "database_mysql"
