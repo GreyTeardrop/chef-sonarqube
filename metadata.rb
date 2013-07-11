@@ -17,6 +17,10 @@ end
   depends cb
 end
 
+%w{ mysql }.each do |cb|
+  depends cb
+end
+
 attribute "sonar/dir",
   :display_name => "Sonar directory",
   :description => "Path to sonar",
