@@ -21,6 +21,10 @@ include_recipe "java"
 
 package "unzip"
 
+service "sonar" do
+  supports :status => true, :restart => true, :start => true, :stop => true
+end
+
 remote_file "/opt/sonar-#{node['sonar']['version']}.zip" do
   source "#{node['sonar']['mirror']}/sonar-#{node['sonar']['version']}.zip"
   mode "0644"
@@ -29,6 +33,7 @@ remote_file "/opt/sonar-#{node['sonar']['version']}.zip" do
 end
 
 execute "unzip /opt/sonar-#{node['sonar']['version']}.zip -d /opt/" do
+  notifies :stop, resources(:service => "sonar")
   not_if { ::File.directory?("/opt/sonar-#{node['sonar']['version']}/") }
 end
 
@@ -41,7 +46,6 @@ link "/etc/init.d/sonar" do
 end
 
 service "sonar" do
-  supports :status => true, :restart => true
   action :enable
 end
 
