@@ -9,6 +9,7 @@ sonar_plugin "sonar-technicaldebt-plugin"
 
 sonar_plugin "sonar-android-plugin" do
   version "0.1"
+  repo_url "http://repository.codehaus.org/org/codehaus/sonar-plugins/android/"
 end
 
 sonar_plugin "sonar-jbehave-plugin" do
