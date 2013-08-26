@@ -7,6 +7,10 @@ sonar_plugin "sonar-crowd-plugin"
 sonar_plugin "sonar-googleanalytics-plugin"
 sonar_plugin "sonar-technicaldebt-plugin"
 
+sonar_plugin "sonar-android-plugin" do
+  version "0.1"
+end
+
 sonar_plugin "sonar-jbehave-plugin" do
   version "1.0.2"
   repo_url "http://mvnproxy.eden.klm.com/content/repositories/kl-releases/com/klm/eden/jbehave/"
