@@ -16,3 +16,7 @@ sonar_plugin "sonar-jbehave-plugin" do
   version "1.0.2"
   repo_url "http://mvnproxy.eden.klm.com/content/repositories/kl-releases/com/klm/eden/jbehave/"
 end
+
+sonar_plugin "sonar-javascript-plugin" do
+  version "1.4"
+end
