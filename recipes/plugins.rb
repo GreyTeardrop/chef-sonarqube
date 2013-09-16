@@ -24,3 +24,7 @@ end
 #  version "1.4"
 #  repo_url "http://repository.codehaus.org/org/codehaus/sonar-plugins/javascript"
 #end
+
+#sonar_plugin "sonar-motion-chart-plugin" do
+#  version "1.5"
+#end
