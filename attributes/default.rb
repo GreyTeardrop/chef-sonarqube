@@ -1,8 +1,8 @@
 # General settings
 default['sonar']['dir']       = "/opt/sonar"
-default['sonar']['version']   = "2.13.1"
-default['sonar']['checksum']  = "9d05e25ca79c33d673004444d89c8770"
-default['sonar']['os_kernel'] = "linux-x86-32"
+default['sonar']['version']   = "3.7"
+default['sonar']['checksum']  = "b00819d80c2e3ea436d546d3dab16987"
+default['sonar']['os_kernel'] = "linux-x86-64"
 default['sonar']['mirror']    = "http://dist.sonar.codehaus.org"
 default['sonar']['plugins_repo']    = "http://repository.codehaus.org/org/codehaus/sonar-plugins"
 default['sonar']['plugins_dir']    = "extensions/plugins"
