@@ -25,3 +25,4 @@ node.default['sonar']['jdbc_validationQuery'] = "select 1"
 
 include_recipe "sonar::default"
 include_recipe "sonar::database_mysql"
+

@@ -69,3 +69,4 @@ template "wrapper.conf" do
   mode 0644
   notifies :restart, resources(:service => "sonar")
 end
+
