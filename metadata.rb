@@ -1,3 +1,4 @@
+name             "sonar"
 maintainer       "ramonskie"
 maintainer_email "ramon.makkelie@klm.com"
 license          "Apache 2.0"
@@ -13,7 +14,7 @@ recipe           "sonar::proxy_nginx", "Includes the recipe to install Nginx-Web
   supports os
 end
 
-%w{ java mysql backup }.each do |cb|
+%w{ java mysql backup apache2 nginx }.each do |cb|
   depends cb
 end
 

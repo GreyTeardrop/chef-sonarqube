@@ -40,13 +40,13 @@ include_recipe "apache2"
 
 template "sonar_server.conf" do
   path "#{node[:nginx][:dir]}/sites-enabled/"
-  source "apache_site_#{node['sonar']['web_template']}.erb"
+  source "apache_site_#{node[:sonar][:web_template]}.erb"
   owner "root"
   group "root"
   mode 0644
 end
 
-if node['sonar']['enable_mod_proxy_ajp'] == true
+if node[:sonar][:enable_mod_proxy_ajp] == true
   include_recipe "apache2::mod_proxy_ajp"
 else 
   include_recipe "apache2::mod_proxy"

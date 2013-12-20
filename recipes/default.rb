@@ -25,24 +25,24 @@ service "sonar" do
   supports :status => true, :restart => true, :start => true, :stop => true
 end
 
-remote_file "/opt/sonar-#{node['sonar']['version']}.zip" do
-  source "#{node['sonar']['mirror']}/sonar-#{node['sonar']['version']}.zip"
+remote_file "/opt/sonar-#{node[:sonar][:version]}.zip" do
+  source "#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip"
   mode "0644"
-  checksum "#{node['sonar']['checksum']}"
-  not_if { ::File.exists?("/opt/sonar-#{node['sonar']['version']}.zip") }
+  checksum node[:sonar][:checksum]
+  not_if { ::File.exists?("/opt/sonar-#{node[:sonar][:version]}.zip") }
 end
 
-execute "unzip /opt/sonar-#{node['sonar']['version']}.zip -d /opt/" do
-  notifies :stop, resources(:service => "sonar")
-  not_if { ::File.directory?("/opt/sonar-#{node['sonar']['version']}/") }
+execute "unzip /opt/sonar-#{node[:sonar][:version]}.zip -d /opt/" do
+  notifies :stop, :restart, "service[sonar]"
+  not_if { ::File.directory?("/opt/sonar-#{node[:sonar][:version]}/") }
 end
 
 link "/opt/sonar" do
-  to "/opt/sonar-#{node['sonar']['version']}"
+  to "/opt/sonar-#{node[:sonar][:version]}"
 end
 
 link "/etc/init.d/sonar" do
-  to "/opt/sonar/bin/#{node['sonar']['os_kernel']}/sonar.sh"
+  to "/opt/sonar/bin/#{node[:sonar][:os_kernel]}/sonar.sh"
 end
 
 service "sonar" do
@@ -56,9 +56,9 @@ template "sonar.properties" do
   group "root"
   mode 0644
   variables(
-    :options => node['sonar']['options']
+    :options => node[:sonar][:options]
   )
-  notifies :restart, resources(:service => "sonar")
+  notifies :restart, "service[sonar]"
 end
 
 template "wrapper.conf" do
@@ -67,6 +67,6 @@ template "wrapper.conf" do
   owner "root"
   group "root"
   mode 0644
-  notifies :restart, resources(:service => "sonar")
+  notifies :restart, "service[sonar]"
 end
 

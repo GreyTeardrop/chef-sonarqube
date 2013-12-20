@@ -9,7 +9,7 @@ template grants_path do
   group "root"
   mode "0600"
   action :create
-  notifies :restart, resources(:service => "sonar")
+  notifies :restart, "service[sonar]"
 end
 
 execute "mysql-install-application-privileges" do

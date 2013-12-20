@@ -7,7 +7,7 @@ define :sonar_plugin, :version => "1.0", :repo_url => false do
     owner "root"
     group "root"
     mode 0755
-    notifies :restart, resources(:service => "sonar")
+    notifies :restart, "service[sonar]"
     not_if "test -f #{node[:sonar][:dir]}/#{node[:sonar][:plugins_dir]}/#{params[:name]}-#{params[:version]}.jar"
   end
 end
