@@ -1,6 +1,6 @@
 # DESCRIPTION:
 
-This cookbook basically translates the install instructions from http://docs.codehaus.org/display/SONAR/Install+Sonar#InstallSonar-Server into chef DSL.
+This cookbook basically translates the install instructions from http://docs.codehaus.org/display/SONAR/Installing into Chef DSL.
 
 # REQUIREMENTS:
 
