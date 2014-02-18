@@ -23,7 +23,6 @@ default[:sonar][:web_template]           = 'default'
 default[:sonar][:jdbc_username]          = 'sonar'
 default[:sonar][:jdbc_password]          = 'sonar'
 default[:sonar][:jdbc_url]               = 'jdbc:h2:tcp://localhost:9092/sonar'
-default[:sonar][:jdbc_driverClassName]   = 'org.h2.Driver'
 
 # Wrapper settings eg. for performance improvements
 # @see http://docs.codehaus.org/display/SONAR/Performances

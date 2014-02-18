@@ -49,7 +49,6 @@ sonar.jdbc.password:                       <%= node[:sonar][:jdbc_password] %>
   
 # Comment the following lines to deactivate the default embedded database.
 sonar.jdbc.url:                            <%= node[:sonar][:jdbc_url] %>
-sonar.jdbc.driverClassName:                <%= node[:sonar][:jdbc_driverClassName] %>
 
 # directory containing Derby database files. By default it's the /data directory in the sonar installation.
 #sonar.embeddedDatabase.dataDir:
@@ -62,7 +61,6 @@ sonar.jdbc.driverClassName:                <%= node[:sonar][:jdbc_driverClassNam
 #----- MySQL 5.x/6.x
 # Comment the embedded database and uncomment the following properties to use MySQL. The validation query is optional.
 #sonar.jdbc.url:                            jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8
-#sonar.jdbc.driverClassName:                com.mysql.jdbc.Driver
 
 
 #----- Oracle 10g/11g
@@ -70,7 +68,6 @@ sonar.jdbc.driverClassName:                <%= node[:sonar][:jdbc_driverClassNam
 # - Copy the JDBC driver to extensions/jdbc-driver/oracle.
 # - Comment the embedded database and uncomment the following properties. The validation query is optional.
 #sonar.jdbc.url:                            jdbc:oracle:thin:@localhost/XE
-#sonar.jdbc.driverClassName:                oracle.jdbc.driver.OracleDriver
 
 # Activate if more than one Sonar Oracle schemas on the data server (for example different versions installed).
 # In that case, use the same property during maven analysis (-Dsonar.hibernate.default_schema=xxx)
@@ -79,14 +76,12 @@ sonar.jdbc.driverClassName:                <%= node[:sonar][:jdbc_driverClassNam
 #----- PostgreSQL 8.x, 9.x
 # Uncomment the following properties to use PostgreSQL. The validation query is optional.
 #sonar.jdbc.url:                            jdbc:postgresql://localhost/sonar
-#sonar.jdbc.driverClassName:                org.postgresql.Driver
 
 
 #----- Microsoft SQLServer
 # The Jtds open source driver is available in extensions/jdbc-driver/mssql. More details on http://jtds.sourceforge.net
 # The validation query is optional.
 #sonar.jdbc.url:                            jdbc:jtds:sqlserver://localhost;databaseName=SONAR;SelectMethod=Cursor
-#sonar.jdbc.driverClassName:                net.sourceforge.jtds.jdbc.Driver
 
 
 #----- Connection pool settings
