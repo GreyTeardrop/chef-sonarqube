@@ -33,12 +33,12 @@ execute "unzip /opt/sonar-#{node[:sonar][:version]}.zip -d /opt/" do
   not_if { ::File.directory?("/opt/sonar-#{node[:sonar][:version]}/") }
 end
 
-link '/opt/sonar' do
+link node[:sonar][:dir] do
   to "/opt/sonar-#{node[:sonar][:version]}"
 end
 
 link '/etc/init.d/sonar' do
-  to "/opt/sonar/bin/#{node[:sonar][:os_kernel]}/sonar.sh"
+  to "#{node[:sonar][:dir]}/bin/#{node[:sonar][:os_kernel]}/sonar.sh"
 end
 
 service 'sonar' do
@@ -47,7 +47,7 @@ service 'sonar' do
 end
 
 template 'sonar.properties' do
-  path '/opt/sonar/conf/sonar.properties'
+  path "#{node[:sonar][:dir]}/conf/sonar.properties"
   source 'sonar.properties.erb'
   owner 'root'
   group 'root'
@@ -59,7 +59,7 @@ template 'sonar.properties' do
 end
 
 template 'wrapper.conf' do
-  path '/opt/sonar/conf/wrapper.conf'
+  path "#{node[:sonar][:dir]}/conf/wrapper.conf"
   source 'wrapper.conf.erb'
   owner 'root'
   group 'root'

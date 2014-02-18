@@ -1,7 +1,7 @@
 include_recipe 'mysql::server'
 
 # Setup sonar user
-grants_dir = '/opt/sonar/extras/database/mysql'
+grants_dir = "#{node[:sonar][:dir]}/extras/database/mysql"
 grants_path = "#{grants_dir}/create_database.sql"
 
 directory grants_dir do
