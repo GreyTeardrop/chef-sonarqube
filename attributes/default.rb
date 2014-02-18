@@ -22,8 +22,8 @@ default[:sonar][:web_template]           = "default"
 # @see conf/sonar.properties for examples for different databases
 default[:sonar][:jdbc_username]          = "sonar"
 default[:sonar][:jdbc_password]          = "sonar"
-default[:sonar][:jdbc_url]               = "jdbc:derby://localhost:1527/sonar;create=true"
-default[:sonar][:jdbc_driverClassName]   = "org.apache.derby.jdbc.ClientDriver"
+default[:sonar][:jdbc_url]               = "jdbc:h2:tcp://localhost:9092/sonar"
+default[:sonar][:jdbc_driverClassName]   = "org.h2.Driver"
 default[:sonar][:jdbc_validationQuery]   = "values(1)"
 
 # Wrapper settings eg. for performance improvements
