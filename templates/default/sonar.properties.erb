@@ -15,9 +15,9 @@
 # These settings are ignored when the war file is deployed to a JEE server.
 #---------------------------------------------------------
 # Listen host/port and context path (for example / or /sonar). Default values are 0.0.0.0:9000/.
-sonar.web.host:                           <%= node['sonar']['web_host'] %>
-sonar.web.port:                           <%= node['sonar']['web_port'] %>
-sonar.web.context:                        <%= node['sonar']['web_context'] %>
+sonar.web.host:                           <%= node[:sonar][:web_host] %>
+sonar.web.port:                           <%= node[:sonar][:web_port] %>
+sonar.web.context:                        <%= node[:sonar][:web_context] %>
 
 # Log HTTP requests. Deactivated by default.
 #sonar.web.jettyRequestLogs: ../../logs/jetty-yyyy_mm_dd.request.log
@@ -40,17 +40,17 @@ sonar.web.context:                        <%= node['sonar']['web_context'] %>
 #----- Credentials
 # Permissions to create tables and indexes must be granted to JDBC user.
 # The schema must be created first.
-sonar.jdbc.username:                       <%= node['sonar']['jdbc_username'] %>
-sonar.jdbc.password:                       <%= node['sonar']['jdbc_password'] %>
+sonar.jdbc.username:                       <%= node[:sonar][:jdbc_username] %>
+sonar.jdbc.password:                       <%= node[:sonar][:jdbc_password] %>
 
 #----- Embedded database Derby
 # Note : it does accept connections from remote hosts, so the
 # sonar server and the maven plugin must be executed on the same host.
   
 # Comment the following lines to deactivate the default embedded database.
-sonar.jdbc.url:                            <%= node['sonar']['jdbc_url'] %>
-sonar.jdbc.driverClassName:                <%= node['sonar']['jdbc_driverClassName'] %>
-sonar.jdbc.validationQuery:                <%= node['sonar']['jdbc_validationQuery'] %>
+sonar.jdbc.url:                            <%= node[:sonar][:jdbc_url] %>
+sonar.jdbc.driverClassName:                <%= node[:sonar][:jdbc_driverClassName] %>
+sonar.jdbc.validationQuery:                <%= node[:sonar][:jdbc_validationQuery] %>
 
 # directory containing Derby database files. By default it's the /data directory in the sonar installation.
 #sonar.embeddedDatabase.dataDir:

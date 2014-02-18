@@ -35,6 +35,6 @@ Inlcude a `proxy_*` recipe to your `run_list` to access sonar over a proxy serve
 </pre>
 * Set allow / deny patterns with attributes for web access
 <pre>
-	default['sonar']['web_deny']               = []
-	default['sonar']['web_allow']              = []
+	default[:sonar][:web_deny]               = []
+	default[:sonar][:web_allow]              = []
 </pre>
