@@ -33,7 +33,7 @@ remote_file "/opt/sonar-#{node[:sonar][:version]}.zip" do
 end
 
 execute "unzip /opt/sonar-#{node[:sonar][:version]}.zip -d /opt/" do
-  notifies :stop, :restart, "service[sonar]"
+  notifies [:stop, :restart], "service[sonar]"
   not_if { ::File.directory?("/opt/sonar-#{node[:sonar][:version]}/") }
 end
 
