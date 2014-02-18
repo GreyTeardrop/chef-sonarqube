@@ -50,7 +50,6 @@ sonar.jdbc.password:                       <%= node[:sonar][:jdbc_password] %>
 # Comment the following lines to deactivate the default embedded database.
 sonar.jdbc.url:                            <%= node[:sonar][:jdbc_url] %>
 sonar.jdbc.driverClassName:                <%= node[:sonar][:jdbc_driverClassName] %>
-sonar.jdbc.validationQuery:                <%= node[:sonar][:jdbc_validationQuery] %>
 
 # directory containing Derby database files. By default it's the /data directory in the sonar installation.
 #sonar.embeddedDatabase.dataDir:
@@ -64,7 +63,6 @@ sonar.jdbc.validationQuery:                <%= node[:sonar][:jdbc_validationQuer
 # Comment the embedded database and uncomment the following properties to use MySQL. The validation query is optional.
 #sonar.jdbc.url:                            jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8
 #sonar.jdbc.driverClassName:                com.mysql.jdbc.Driver
-#sonar.jdbc.validationQuery:                select 1
 
 
 #----- Oracle 10g/11g
@@ -73,7 +71,6 @@ sonar.jdbc.validationQuery:                <%= node[:sonar][:jdbc_validationQuer
 # - Comment the embedded database and uncomment the following properties. The validation query is optional.
 #sonar.jdbc.url:                            jdbc:oracle:thin:@localhost/XE
 #sonar.jdbc.driverClassName:                oracle.jdbc.driver.OracleDriver
-#sonar.jdbc.validationQuery:                select 1 from dual
 
 # Activate if more than one Sonar Oracle schemas on the data server (for example different versions installed).
 # In that case, use the same property during maven analysis (-Dsonar.hibernate.default_schema=xxx)
@@ -83,7 +80,6 @@ sonar.jdbc.validationQuery:                <%= node[:sonar][:jdbc_validationQuer
 # Uncomment the following properties to use PostgreSQL. The validation query is optional.
 #sonar.jdbc.url:                            jdbc:postgresql://localhost/sonar
 #sonar.jdbc.driverClassName:                org.postgresql.Driver
-#sonar.jdbc.validationQuery:                select 1
 
 
 #----- Microsoft SQLServer
@@ -91,7 +87,6 @@ sonar.jdbc.validationQuery:                <%= node[:sonar][:jdbc_validationQuer
 # The validation query is optional.
 #sonar.jdbc.url:                            jdbc:jtds:sqlserver://localhost;databaseName=SONAR;SelectMethod=Cursor
 #sonar.jdbc.driverClassName:                net.sourceforge.jtds.jdbc.Driver
-#sonar.jdbc.validationQuery:                select 1  
 
 
 #----- Connection pool settings

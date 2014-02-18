@@ -51,7 +51,6 @@ Vagrant.configure("2") do |config|
             "web_domain" => "sonar.eden.klm.com",
             "jdbc_url" => "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8",
             "jdbc_driverClassName" => "com.mysql.jdbc.Driver",
-            "jdbc_validationQuery" => "select 1",
             "options" => {
                 "sonar.authenticator.class" => "org.sonar.plugins.crowd.CrowdAuthenticator",
                 "sonar.authenticator.ignoreStartupFailure" => "true",
