@@ -1,7 +1,14 @@
 include_recipe 'mysql::server'
 
 # Setup sonar user
-grants_path = '/opt/sonar/extras/database/mysql/create_database.sql'
+grants_dir = '/opt/sonar/extras/database/mysql'
+grants_path = "#{grants_dir}/create_database.sql"
+
+directory grants_dir do
+  owner 'root'
+  group 'root'
+  recursive true
+end
 
 template grants_path do
   source 'create_mysql_database.sql.erb'
