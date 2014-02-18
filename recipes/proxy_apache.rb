@@ -46,7 +46,7 @@ template 'sonar_server.conf' do
   mode 0644
 end
 
-if node[:sonar][:enable_mod_proxy_ajp] == true
+if node[:sonar][:enable_mod_proxy_ajp]
   include_recipe 'apache2::mod_proxy_ajp'
 else 
   include_recipe 'apache2::mod_proxy'
