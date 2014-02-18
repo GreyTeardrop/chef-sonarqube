@@ -9,8 +9,8 @@ describe_recipe 'sonar::default' do
   include MiniTest::Chef::Context
   include MiniTest::Chef::Resources
 
-  describe "installs" do
-    it "installs the files to the correct folder" do
+  describe 'installs' do
+    it 'installs the files to the correct folder' do
       directory(node[:sonar][:dir]).must_exist
     end
 
@@ -20,8 +20,8 @@ describe_recipe 'sonar::default' do
 #    end
   end
 
-  describe "run_state" do
-    it "succeed" do
+  describe 'run_state' do
+    it 'succeed' do
       run_status.success?.must_equal true
     end
   end

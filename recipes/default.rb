@@ -17,53 +17,53 @@
 # limitations under the License.
 #
 
-include_recipe "java"
+include_recipe 'java'
 
-package "unzip"
+package 'unzip'
 
 remote_file "/opt/sonar-#{node[:sonar][:version]}.zip" do
   source "#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip"
-  mode "0644"
+  mode '0644'
   checksum node[:sonar][:checksum]
   not_if { ::File.exists?("/opt/sonar-#{node[:sonar][:version]}.zip") }
 end
 
 execute "unzip /opt/sonar-#{node[:sonar][:version]}.zip -d /opt/" do
-  notifies :stop, "service[sonar]", :immediate
+  notifies :stop, 'service[sonar]', :immediate
   not_if { ::File.directory?("/opt/sonar-#{node[:sonar][:version]}/") }
 end
 
-link "/opt/sonar" do
+link '/opt/sonar' do
   to "/opt/sonar-#{node[:sonar][:version]}"
 end
 
-link "/etc/init.d/sonar" do
+link '/etc/init.d/sonar' do
   to "/opt/sonar/bin/#{node[:sonar][:os_kernel]}/sonar.sh"
 end
 
-service "sonar" do
+service 'sonar' do
   supports :status => true, :restart => true, :start => true, :stop => true
   action [:enable, :start]
 end
 
-template "sonar.properties" do
-  path "/opt/sonar/conf/sonar.properties"
-  source "sonar.properties.erb"
-  owner "root"
-  group "root"
+template 'sonar.properties' do
+  path '/opt/sonar/conf/sonar.properties'
+  source 'sonar.properties.erb'
+  owner 'root'
+  group 'root'
   mode 0644
   variables(
     :options => node[:sonar][:options]
   )
-  notifies :restart, "service[sonar]"
+  notifies :restart, 'service[sonar]'
 end
 
-template "wrapper.conf" do
-  path "/opt/sonar/conf/wrapper.conf"
-  source "wrapper.conf.erb"
-  owner "root"
-  group "root"
+template 'wrapper.conf' do
+  path '/opt/sonar/conf/wrapper.conf'
+  source 'wrapper.conf.erb'
+  owner 'root'
+  group 'root'
   mode 0644
-  notifies :restart, "service[sonar]"
+  notifies :restart, 'service[sonar]'
 end
 

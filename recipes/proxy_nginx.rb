@@ -17,16 +17,16 @@
 # limitations under the License.
 #
 
-include_recipe "nginx"
+include_recipe 'nginx'
 
-template "sonar_server.conf" do
+template 'sonar_server.conf' do
   path "#{node[:nginx][:dir]}/sites-available/sonar_server.conf"
   source "nginx_site_#{node[:sonar][:web_template]}.erb"
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
   mode 0644
 end
 
-nginx_site "sonar_server.conf" do
+nginx_site 'sonar_server.conf' do
   enable :true
 end
