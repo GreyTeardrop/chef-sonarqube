@@ -6,6 +6,7 @@ default[:sonar][:os_kernel] = 'linux-x86-64'
 default[:sonar][:mirror]    = 'http://dist.sonar.codehaus.org'
 default[:sonar][:plugins_repo]    = 'http://repository.codehaus.org/org/codehaus/sonar-plugins'
 default[:sonar][:plugins_dir]    = 'extensions/plugins'
+default[:sonar][:downloads_dir]  = 'extensions/downloads'
 default[:sonar][:plugins]    = {}
 
 # Web settings
