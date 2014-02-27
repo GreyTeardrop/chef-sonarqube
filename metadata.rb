@@ -10,7 +10,7 @@ recipe           'sonar::database_mysql', 'Includes the recipe to install MySql-
 recipe           'sonar::proxy_apache', 'Includes the recipe to install Apache-Webserver and proxy modules to access sonar. Creates a host for sonar.'
 recipe           'sonar::proxy_nginx', 'Includes the recipe to install Nginx-Webserver and configures proxy to access sonar. Creates a host for sonar.'
 
-%w{ debian ubuntu }.each do |os|
+%w{ debian ubuntu centos }.each do |os|
   supports os
 end
 
