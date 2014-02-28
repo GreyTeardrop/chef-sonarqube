@@ -1,24 +1,41 @@
 include_recipe 'mysql::server'
+include_recipe 'database::mysql'
 
-# Setup sonar user
-grants_dir = "#{node[:sonar][:dir]}/extras/database/mysql"
-grants_path = "#{grants_dir}/create_database.sql"
+mysql_connection = {
+    :host     => 'localhost',
+    :username => 'root',
+    :password => node[:mysql][:server_root_password]
+}
 
-directory grants_dir do
-  owner 'root'
-  group 'root'
-  recursive true
+mysql_database 'sonar' do
+  connection     mysql_connection
+  action         :create
 end
 
-template grants_path do
-  source 'create_mysql_database.sql.erb'
-  owner 'root'
-  group 'root'
-  mode '0600'
-  action :create
-  notifies :restart, 'service[sonar]'
+mysql_database_user node[:sonar][:jdbc_username] do
+  connection     mysql_connection
+  host           'localhost'
+  password       node[:sonar][:jdbc_password]
+  action         :create
+  notifies       :restart, 'service[sonar]'
 end
 
-execute 'mysql-install-application-privileges' do
-  command "/usr/bin/mysql -u root #{node[:mysql][:server_root_password].empty? ? '' : '-p' }#{node[:mysql][:server_root_password]} < #{grants_path}"
+mysql_database_user "grant #{node[:sonar][:jdbc_username]}@localhost" do
+  connection     mysql_connection
+  database_name  'sonar'
+  host           'localhost'
+  username       node[:sonar][:jdbc_username]
+  password       node[:sonar][:jdbc_password]
+  action         :grant
+  notifies       :restart, 'service[sonar]'
+end
+
+mysql_database_user "grant #{node[:sonar][:jdbc_username]}@%" do
+  connection     mysql_connection
+  database_name  'sonar'
+  host           '%'
+  username       node[:sonar][:jdbc_username]
+  password       node[:sonar][:jdbc_password]
+  action         :grant
+  notifies       :restart, 'service[sonar]'
 end
