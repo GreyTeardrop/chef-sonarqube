@@ -31,9 +31,9 @@ nginx_site 'sonar_server.conf' do
   enable :true
 end
 
-# Quick fix for Nginx on Red Hat platform that contains non-managable /etc/nginx/conf.d/default.conf
-# that overrides configuration for Sonar Nginx site
-if platform_family?('rhel') && !node[:nginx][:default_site_enabled]
+# Quick fix for Nginx that contains non-manageable /etc/nginx/conf.d/default.conf
+# and overrides configuration for Sonar Nginx site
+unless node[:nginx][:default_site_enabled]
   file '/etc/nginx/conf.d/default.conf' do
     action :delete
     notifies :reload, 'service[nginx]'
